@@ -1,0 +1,1 @@
+<img width="10px" src="<%=Routes.static_path(@conn, "/images/#{@arrow}.png") %>"><%= link(@field_text, to: Routes.rushings_path(@conn, :index, @conn.query_params |> Map.put(:sort, @field_name) |> Map.put(:direction, @arrow))) %>

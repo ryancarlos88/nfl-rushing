@@ -1,0 +1,55 @@
+<h1>Player Rushings</h1>
+<%= form_for @conn, Routes.rushings_path(@conn, :index), [method: :get, class: "pull-right"], fn f -> %>
+      <%= search_input f, :player_name, [style: "width: 40%", placeholder: "Search for player name"] %>
+      <%= select(f, :page_size, [20, 50, 100]) %> per page
+      <br/>
+      <%= submit "Search" %>
+      <%= link("Download CSV", to: Routes.rushings_path(@conn, :download, @conn.query_params)) %>
+    <% end %>
+
+<%= render("_pagination_controls_helper.html", conn: @conn, rushings: @rushings) %>
+
+<table>
+  <thead>
+    <tr>
+      <th title="Player name">Player</th>
+      <th title="Player team">Team</th>
+      <th title="Player position">POS</th>
+      <th title="Rushing attemps">Att</th>
+      <th title="Rushing attempts per game avg">Att/G</th>
+      <th title="Rushing avg yards per attempt">Avg</th>
+      <th title="Rushing yards per game">Yds/G</th>
+      <th title="Total rushing yards"><%= render("_sorting_column_helper.html", conn: @conn, arrow: @rushings.arrow_yds, field_text: "Yds", field_name: :total_rushing_yards) %></th>
+      <th title="Total rushing touchdowns"><%= render("_sorting_column_helper.html", conn: @conn, arrow: @rushings.arrow_td, field_text: "TD", field_name: :total_rushing_touchdowns) %></th>
+      <th title="Longest rush"><%= render("_sorting_column_helper.html", conn: @conn, arrow: @rushings.arrow_lng, field_text: "Lng", field_name: :longest_rush) %></th>
+      <th title="Rushing first downs">1st</th>
+      <th title="Rushing first downs percentage">1st%</th>
+      <th title="Rushing 20p yards each">20+</th>
+      <th title="Rushing 40p yards each">40+</th>
+      <th title="Rushing fumbles">FUM</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for rushing <- @rushings.items do %>
+    <tr>
+      <td><%= rushing.player_name %></td>
+      <td><%= rushing.player_team %></td>
+      <td><%= rushing.player_position %></td>
+      <td><%= rushing.rushing_attemps %></td>
+      <td><%= rushing.rushing_attempts_per_game_avg %></td>
+      <td><%= rushing.rushing_avg_yards_per_attempt %></td>
+      <td><%= rushing.rushing_yards_per_game %></td>
+      <td><%= rushing.total_rushing_yards %></td>
+      <td><%= rushing.total_rushing_touchdowns %></td>
+      <td><%= rushing.longest_rush %></td>
+      <td><%= rushing.rushing_first_downs %></td>
+      <td><%= rushing.rushing_first_downs_percentage %></td>
+      <td><%= rushing.rushing_20p_yards_each %></td>
+      <td><%= rushing.rushing_40p_yards_each %></td>
+      <td><%= rushing.rushing_fumbles %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= render("_pagination_controls_helper.html", conn: @conn, rushings: @rushings) %>

@@ -1,0 +1,5 @@
+<%= if @rushings.current_page != @rushings.first_page and @rushings.prev_page != @rushings.first_page do link("First page..", to: Routes.rushings_path(@conn, :index, @conn.query_params |> Map.put(:page_number, @rushings.first_page))) end %>
+<%= if @rushings.has_prev do link(@rushings.prev_page, to: Routes.rushings_path(@conn, :index, @conn.query_params |> Map.put(:page_number, @rushings.prev_page))) end %>
+<%= "#{@rushings.current_page}" %>
+<%= if @rushings.has_next do link(@rushings.next_page, to: Routes.rushings_path(@conn, :index, @conn.query_params |> Map.put(:page_number, @rushings.next_page))) end %>
+<%= if @rushings.current_page != @rushings.last_page and @rushings.next_page != @rushings.last_page do link("..Last page", to: Routes.rushings_path(@conn, :index, @conn.query_params |> Map.put(:page_number, @rushings.last_page))) end %>
