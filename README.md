@@ -59,6 +59,7 @@ Clone this repo to a directory of your choice.
 * run `cd nfl-rushing/nfl_rushing` to access the project directory.
 * run `mix deps.get` to download the dependencies.
 * run `mix ecto.setup` to prepare the database (migrations and seeds).
+* run `npm install` inside the `assets` directory
 * run `mix phx.server` to run the app server and access the rushings page via `http://localhost:4000/rushings`.
 
 * run `mix test` to run the application tests
