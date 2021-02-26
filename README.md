@@ -54,4 +54,12 @@ We will evaluate you on your ability to solve the problem defined in the require
 If you have any questions regarding requirements, do not hesitate to email your contact at theScore for clarification.
 
 ### Installation and running this solution
-... TODO
+
+Clone this repo to a directory of your choice.
+* run `cd nfl-rushing/nfl_rushing` to access the project directory.
+* run `mix deps.get` to download the dependencies.
+* run `mix ecto.setup` to prepare the database (migrations and seeds).
+* run `npm install` inside the `assets` directory
+* run `mix phx.server` to run the app server and access the rushings page via `http://localhost:4000/rushings`.
+
+* run `mix test` to run the application tests
