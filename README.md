@@ -62,4 +62,4 @@ Clone this repo to a directory of your choice.
 * run `npm install` inside the `assets` directory
 * run `mix phx.server` to run the app server and access the rushings page via `http://localhost:4000/rushings`.
 
-* run `mix test` to run the application tests
+* run `MIX_ENV=test mix test` to run the application tests
