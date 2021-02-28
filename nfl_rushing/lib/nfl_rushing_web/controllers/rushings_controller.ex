@@ -1,6 +1,5 @@
 defmodule NflRushingWeb.RushingsController do
-  alias CSV
-  alias NflRushing.PlayerRushing
+  alias NflRushing.Integration.PlayerRushing, as: Integrator
   alias NflRushing.PlayerRushing.Service
 
   use NflRushingWeb, :controller
@@ -37,7 +36,7 @@ defmodule NflRushingWeb.RushingsController do
     csv =
       player_name
       |> Service.list_player_rushings_to_download(sort, direction)
-      |> prepare_rushings_to_csv()
+      |> Integrator.prepare_rushings_to_csv()
 
 
     conn
@@ -46,12 +45,5 @@ defmodule NflRushingWeb.RushingsController do
     |> send_resp(200, csv)
   end
 
-  @spec prepare_rushings_to_csv([PlayerRushing]) :: String.t()
-  def prepare_rushings_to_csv(rushings) do
-    rushings
-    |> Stream.map(fn r -> Map.drop(r, [:__meta__, :__struct__, :id, :inserted_at, :updated_at]) end)
-    |> CSV.Encoding.Encoder.encode(headers: true)
-    |> Enum.to_list
-    |> to_string
-  end
+
 end
